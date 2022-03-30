@@ -22,5 +22,9 @@ class ProductController extends Controller
     {
         return 'Delete';
     }
+    public function findOne()
+    {
+        return 'FindOne';
+    }
 }
 
