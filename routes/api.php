@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -53,6 +53,18 @@ Route::get('/task/{userId}', [TaskController::class, 'getAllByUser']);
 
 route::get('/posts', [PostsController::class, 'show']);
 route::post('/posts', [PostController::class, 'create']);
-route::put('/post/{id}', [PostController::class, 'update']);
-route::delete('/post/{id}', [PostController::class, 'delete']);
+route::put('/post/{id}', [PostsController::class, 'update']);
+route::delete('/post/{id}', [PostsController::class, 'delete']);
 // route::findOne('/post/{id}', [PostController::class, 'findOne']);
+
+route::get('/posts_middleware', [PostsController::class, 'handle']) -> middleware('fsd');
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group([
+    'middleware' => 'jwt.auth'
+], function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/profile', [AuthController::class, 'profile']);
+});

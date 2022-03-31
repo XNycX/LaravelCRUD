@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -123,5 +124,14 @@ class PostsController extends Controller
             Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
+    }public function handle(Request $request, Closure $next)
+    {
+        Log::info('FSD Middleware');
+
+if ($request->is_admin === 1) {
+
+        return $next($request);
+    }
+    return response()->json(['error' => 'Unauthorized'], 401);
     }
 }
