@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Log;
 class PostsController extends Controller
 {
     public function show()
-    {
+    {   
+        Log::info('all Posts');
         try {
             $posts = Post::all();
+            Log::info('all posts done');
 
             $data = [
                 'data' => $posts,
@@ -26,12 +28,13 @@ class PostsController extends Controller
     }
     public function createTwo()
     {
+        Log::info('create Posts');
         try {
             $post = new Post();
             $post->title = 'Title';
-            $post->body = 'Body';
+            $post->description = 'description';
             $post->save();
-
+            Log::info('create post two done');
             $data = [
                 'data' => $post,
                 'sucess' => 'ok'
@@ -44,6 +47,7 @@ class PostsController extends Controller
     }
     public function update(Request $request, $id)
     {
+        Log::info('update Posts');
         try {
             $post = Post::findOrFail($id);
             if (isset($request->title)) {
@@ -53,12 +57,11 @@ class PostsController extends Controller
                 }
                 $post->save();
             }
-
-
             $data = [
                 'data' => $post,
                 'sucess' => 'ok'
             ];
+            Log::info('update post done');
             return response()->json($data, 200);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -67,6 +70,7 @@ class PostsController extends Controller
     }
     public function delete($id)
     {
+        Log::info('delete Posts');
         try {
             $post = Post::find($id);
             $post->delete();
@@ -75,6 +79,7 @@ class PostsController extends Controller
                 'data' => $post,
                 'sucess' => 'ok'
             ];
+            Log::info('delete post done');
             return response()->json($data, 200);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -83,6 +88,7 @@ class PostsController extends Controller
     }
     public function findOne($id)
     {
+        Log::info('findOne Posts');
         try {
             $post = Post::find($id);
 
@@ -90,6 +96,7 @@ class PostsController extends Controller
                 'data' => $post,
                 'sucess' => 'ok'
             ];
+            Log::info('findOne post done');
             return response()->json($data, 200);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -98,6 +105,7 @@ class PostsController extends Controller
     }
     public function create(Request $request)
     {
+        Log::info('create Posts');
         try {
             $post = new Post();
             $post->title = $request->title;
@@ -109,6 +117,7 @@ class PostsController extends Controller
                 'data' => $post,
                 'sucess' => 'ok'
             ];
+            Log::info('create post done');
             return response()->json($data, 200);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());

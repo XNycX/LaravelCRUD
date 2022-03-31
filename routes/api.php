@@ -46,6 +46,8 @@ Route::post('/tasks', [TaskController::class, 'create']);
 Route::put('/task/{id}', [TaskController::class, 'update']);
 Route::delete('/task/{id}', [TaskController::class, 'delete']);
 
+Route::get('/task/{userId}', [TaskController::class, 'getAllByUser']);
+
 
 // Post
 
