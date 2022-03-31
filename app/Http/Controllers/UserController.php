@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -18,6 +19,7 @@ class UserController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -37,6 +39,7 @@ class UserController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -55,6 +58,7 @@ class UserController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }   public function delete($id)
@@ -69,6 +73,7 @@ class UserController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     } public function findOne($id)
@@ -82,6 +87,7 @@ class UserController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }

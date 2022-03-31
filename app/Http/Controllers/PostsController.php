@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PostsController extends Controller
 {
@@ -19,6 +20,7 @@ class PostsController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -36,6 +38,7 @@ class PostsController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -58,6 +61,7 @@ class PostsController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -73,6 +77,7 @@ class PostsController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -87,6 +92,7 @@ class PostsController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
@@ -105,6 +111,7 @@ class PostsController extends Controller
             ];
             return response()->json($data, 200);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return response()->json(['error' => $exception->getMessage()], 500);
         }
     }
