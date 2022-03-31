@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class UserController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
+        dd($request->query('active'));
+
+
         Log::info('all User');
         try {
             $users = User::all();
